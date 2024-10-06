@@ -1,0 +1,33 @@
+{
+    "Service1":{
+        "disk_space":[
+            "Filesystem      Size  Used Avail Use% Mounted on",
+            "overlay         228G   29G  188G  14% /",""
+        ],
+        "ip_address":"172.18.0.3",
+        "processes":[
+            "    PID TTY      STAT   TIME COMMAND",
+            "      1 ?        Ssl    0:00 python app.py",
+            "     10 ?        S      0:00 /bin/sh -c ps -ax",
+            "     11 ?        R      0:00 ps -ax",""
+        ],
+        "uptime":"up 1 hour, 13 minutes"},
+    "Service2":{
+        "disk_space":[
+            "Filesystem      Size  Used Avail Use% Mounted on",
+            "overlay         228G   29G  188G  14% /",""
+        ],
+        "ip_address":"172.18.0.2",
+        "processes":[
+            "    PID TTY      STAT   TIME COMMAND",
+            "      1 ?        Ssl    0:00 node app.js",
+            "     14 ?        S      0:00 /bin/sh -c ps -ax",
+            "     15 ?        R      0:00 ps -ax",""
+        ],
+        "uptime":"up 1 hour, 13 minutes"
+    }
+}
+
+Above is the respone I got when I ran the docker-compose file. From this I can see that the 2 services share the disk_space. That means the containers share the storage resources.
+Also by looking at the ip_address they are using the same docker bridge network 172.18.0.x.
+Other than that I know that the containers use the same OS Kernel of the host system since it is one of the main difference between containers and VMs.
