@@ -1,0 +1,1 @@
+I used chatGPT to fix an error that occured when running docker compose. It turned out that I was missing a copy commmand.
