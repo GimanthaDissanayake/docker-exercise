@@ -3,7 +3,7 @@ const { execSync } = require('child_process');
 const os = require('os');
 
 const app = express();
-const port = 3000;
+const port = 8198;
 
 // Function to get IP address
 function getIpAddress() {
@@ -49,8 +49,8 @@ function getUptime() {
     }
 }
 
-// Route to handle '/data' request
-app.get('/data', (req, res) => {
+// Route to handle '/' request
+app.get('/', (req, res) => {
     const systemInfo = {
         ip_address: getIpAddress(),
         processes: getProcesses(),
