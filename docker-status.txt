@@ -1,0 +1,11 @@
+gimantha@gimantha-nitro-an51554:~/Documents/tuni/devops/docker-exercise$ sudo docker container ls
+CONTAINER ID   IMAGE                COMMAND                  CREATED         STATUS          PORTS                                       NAMES
+985f71969ec0   exercise1-service1   "python app.py"          9 minutes ago   Up 25 seconds   0.0.0.0:8199->8199/tcp, :::8199->8199/tcp   exercise1-service1-1
+66301be488f2   exercise1-service2   "docker-entrypoint.s…"   9 minutes ago   Up 26 seconds   0.0.0.0:8198->8198/tcp, :::8198->8198/tcp   exercise1-service2-1
+
+gimantha@gimantha-nitro-an51554:~/Documents/tuni/devops/docker-exercise$ sudo docker network ls
+NETWORK ID     NAME                DRIVER    SCOPE
+05c2ae045475   bridge              bridge    local
+ac6f45e0e109   exercise1_default   bridge    local
+8832d949656c   host                host      local
+d0e64baca6a7   none                null      local
