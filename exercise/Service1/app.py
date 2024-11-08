@@ -2,8 +2,11 @@ from flask import Flask, jsonify
 import subprocess
 import requests
 import time
+from flask_cors import CORS
 
 app = Flask(__name__)
+
+CORS(app)
 
 def get_ip_address():
     # Get the IP address of the container

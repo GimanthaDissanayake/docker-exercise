@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        button {
+            margin: 10px 0;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        textarea {
+            width: 100%;
+            height: 200px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Dashboard</h1>
+    <button id="requestBtn">REQUEST</button>
+    <button id="stopBtn">STOP</button>
+    <br>
+    <textarea id="responseArea" placeholder="Response will be displayed here..." readonly></textarea>
+
+    <script>
+        // REQUEST button click handler
+        document.getElementById('requestBtn').onclick = async function () {
+            const responseArea = document.getElementById('responseArea');
+            try {
+                // Fetch system information from service1 via Nginx
+                const response = await fetch('http://localhost:8198/request');
+                const data = await response.json();
+                responseArea.value = JSON.stringify(data, null, 2);  // Display response in the text area
+            } catch (error) {
+                responseArea.value = 'Error: ' + error.message;
+            }
+        };
+
+        // STOP button click handler
+        document.getElementById('stopBtn').onclick = function () {
+            fetch('/shutdown', { method: 'POST' })
+                .then(() => {
+                    // Close the browser window or return control to the shell
+                    window.close();
+                })
+                .catch((error) => {
+                    alert('Error stopping the services: ' + error.message);
+                });
+        };
+    </script>
+</body>
+</html>
