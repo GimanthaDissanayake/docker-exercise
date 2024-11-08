@@ -1,16 +1,60 @@
 services:
-  service1:
+  service1_1:
     build:
       context: ./Service1
       dockerfile: Dockerfile
     ports:
-      - "8199:8199"
+      - "8199:8199" 
+    networks:
+      - loadbalancing
     depends_on:
       - service2
+
+  service1_2:
+    build:
+      context: ./Service1
+      dockerfile: Dockerfile
+    ports:
+      - "8200:8199"
+    networks:
+      - loadbalancing
+    depends_on:
+      - service2
+
+  service1_3:
+    build:
+      context: ./Service1
+      dockerfile: Dockerfile
+    ports:
+      - "8201:8199"
+    networks:
+      - loadbalancing
+    depends_on:
+      - service2
+
 
   service2:
     build:
       context: ./Service2
       dockerfile: Dockerfile
     ports:
+      - "8189:8189"
+    networks:
+      - loadbalancing
+
+  nginx:
+    build: 
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
       - "8198:8198"
+    networks:
+      - loadbalancing
+    depends_on:
+      - service1_1
+      - service1_2
+      - service1_3
+      - service2
+
+networks:
+  loadbalancing:

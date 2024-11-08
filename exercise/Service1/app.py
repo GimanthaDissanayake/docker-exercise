@@ -1,6 +1,7 @@
 from flask import Flask, jsonify
 import subprocess
 import requests
+import time
 
 app = Flask(__name__)
 
@@ -25,9 +26,9 @@ def get_uptime():
     return uptime
 
 def get_service2_info():
-    # Make an HTTP request to Service2 for its system info
+    # Make an HTTP request to Service2 via nginx for its system info
     try:
-        response = requests.get('http://service2:8198/') 
+        response = requests.get('http://nginx:8189/') 
         return response.json()
     except requests.exceptions.RequestException as e:
         return {"error": str(e)}
@@ -44,6 +45,11 @@ def get_info():
         "Service2": get_service2_info()
     }
     return jsonify(service1_info)
+
+@app.after_request
+def add_delay(response):
+    time.sleep(2)
+    return response
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8199)

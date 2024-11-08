@@ -3,7 +3,7 @@ const { execSync } = require('child_process');
 const os = require('os');
 
 const app = express();
-const port = 8198;
+const port = 8189;
 
 // Function to get IP address
 function getIpAddress() {
