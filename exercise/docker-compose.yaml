@@ -3,8 +3,6 @@ services:
     build:
       context: ./Service1
       dockerfile: Dockerfile
-    ports:
-      - "8199:8199" 
     networks:
       - loadbalancing
     depends_on:
@@ -14,8 +12,6 @@ services:
     build:
       context: ./Service1
       dockerfile: Dockerfile
-    ports:
-      - "8200:8199"
     networks:
       - loadbalancing
     depends_on:
@@ -25,8 +21,6 @@ services:
     build:
       context: ./Service1
       dockerfile: Dockerfile
-    ports:
-      - "8201:8199"
     networks:
       - loadbalancing
     depends_on:
@@ -37,8 +31,6 @@ services:
     build:
       context: ./Service2
       dockerfile: Dockerfile
-    ports:
-      - "8189:8189"
     networks:
       - loadbalancing
 
